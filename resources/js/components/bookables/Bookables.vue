@@ -5,7 +5,7 @@
         </div>
         <div v-else>
             <div class="row mb-4" v-for="row in rows" :key="'row-' + row">
-                <div class="col" v-for="(bookable, col) in bookablesInRow(row)" :key="'col-' + col + 1">
+                <div class="col d-flex align-items-stretch" v-for="(bookable, col) in bookablesInRow(row)" :key="'col-' + col + 1">
                     <bookable-lisl-item 
                         :item-title="bookable.title" 
                         :item-description="bookable.description" 
@@ -47,39 +47,13 @@
         },  
         created() {
             this.loading = true;
-            setTimeout(() => {
-                this.bookables = [
-                    {
-                        title: 'Cheap Villa 01',
-                        description: 'A very cheap villa 01'
-                    },
-                    {
-                        title: 'Cheap Villa 02',
-                        description: 'A very cheap villa 02'
-                    },
-                    {
-                        title: 'Cheap Villa 03',
-                        description: 'A very cheap villa 03'
-                    },
-                    {
-                        title: 'Cheap Villa 04',
-                        description: 'A very cheap villa 04'
-                    },
-                    {
-                        title: 'Cheap Villa 05',
-                        description: 'A very cheap villa 05'
-                    },
-                    {
-                        title: 'Cheap Villa 06',
-                        description: 'A very cheap villa 06'
-                    },
-                    {
-                        title: 'Cheap Villa 07',
-                        description: 'A very cheap villa 07'
-                    }
-                ];
-                this.loading = false;
-            }, 2000)
+
+            const request = axios
+                .get('/api/bookables')
+                .then(response => {
+                    this.bookables = response.data;
+                    this.loading = false;
+                });
         }
     }
 </script>
