@@ -32,7 +32,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         @if(Auth::check())
-                            <router-link class="btn nav-button" :to="{name: 'example2'}">Example 2</router-link>
+                            <router-link class="btn nav-button" :to="{name: 'new'}">Example 2</router-link>
                         @endif
                     </ul>
 

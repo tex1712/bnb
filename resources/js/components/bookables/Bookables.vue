@@ -7,8 +7,7 @@
             <div class="row mb-4" v-for="row in rows" :key="'row-' + row">
                 <div class="col d-flex align-items-stretch" v-for="(bookable, col) in bookablesInRow(row)" :key="'col-' + col + 1">
                     <bookable-lisl-item 
-                        :item-title="bookable.title" 
-                        :item-description="bookable.description" 
+                        v-bind="bookable"
                     >
                     </bookable-lisl-item>
                 </div>
@@ -51,7 +50,7 @@
             const request = axios
                 .get('/api/bookables')
                 .then(response => {
-                    this.bookables = response.data;
+                    this.bookables = response.data.data;
                     this.loading = false;
                 });
         }
